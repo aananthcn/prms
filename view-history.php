@@ -7,12 +7,11 @@
 <h2 style="color:#0f4fe0;"> New consultation </h2>
 <table style="text-align:center;width:100%;">
   <tr>
-      <td><input type="date" name="date" value="<?php echo date("Y-m-d");?>" style="width:100%;"/></td>
-      <td><textarea name="complaint" cols="40" rows="5" placeholder="Patient's complaints..."></textarea></td>
-      <td><input type="text" name="doctor" placeholder="Doctor's name" style="width:100%;"/></td>
-      <td><textarea name="prescription" cols="40" rows="5" placeholder="Doctor's prescription..."></textarea></td>
-      <td>
-	<input type="submit" value="Save treatment" name="hist_btn" style="width:100%;"/></td>
+      <td><textarea name="date" cols="20" rows="3"><?php echo date("Y-m-d");?></textarea></td>
+      <td><textarea name="doctor" cols="20" rows="3">Dr. Jegadish</textarea></td>
+      <td><textarea name="complaint" cols="40" rows="3" placeholder="Patient's complaints..."></textarea></td>
+      <td><textarea name="prescription" cols="40" rows="3" placeholder="Doctor's prescription..."></textarea></td>
+      <td style="vertical-align:middle;"><input type="submit" value="Save treatment" name="hist_btn" style="width:100%;"/></td>
   </tr>
 </table>
 
