@@ -16,6 +16,14 @@
 	<input type="submit" value="Login"/>
 </div>
 
+<div style="text-align: center;">
+<br><br><br><br>
+<font size='3px' color=#ff5f00> மன்னுயிர் ஓம்பி அருளாள்வார்க்கு இல்லென்ப
+<br>தன்னுயிர் அஞ்சும் வினை.
+
+</font>
+</div>
+
 </form>
 
 </body>

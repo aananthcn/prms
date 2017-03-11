@@ -22,18 +22,9 @@ function test_input($data) {
 }
 
 session_start();
-//$_SESSION['patname'] = $name;
-//$_SESSION['patemail'] = $email;
-//$_SESSION['patphone'] = $phone;
-//$_SESSION['patgender'] = $gender;
-
 $username=$_SESSION['username'];
 $password=$_SESSION['password'];
 $database=$_SESSION['database'];
-
-echo "name=$name email=$email phone=$phone gender=$gender";
-echo "username=$username database=$database";
-
 
 
 // connect to mysql
@@ -74,7 +65,7 @@ if (mysqli_query($link, $query)) {
 		$tbl = "pid_"."$patient_id"."_tbl";
 		$query="CREATE TABLE $database.$tbl (
 			vid INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
-			date DATE NOT NULL,
+			date VARCHAR(30) NOT NULL,
 			complaint VARCHAR(2048),
 			doctor VARCHAR(50),
 			prescription VARCHAR(2048)

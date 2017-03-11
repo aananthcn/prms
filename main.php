@@ -56,10 +56,10 @@ else
 
 $j=0;while ($j < $cols) {
 if($j == 0) {
-	echo "<td bgcolor=$bgc>" . "<font face=tahoma size=3>" . '<a href="view-history.php?content='. $row[$j] . '">' . $row[$j] . '</a>' . "</font>" . "</td>";
+	echo "<td bgcolor=$bgc align='center'>" . "<font face=tahoma size=3>" . '<a href="view-history.php?content='. $row[$j] . '">' . $row[$j] . '</a>' . "</font>" . "</td>";
 }
 else
-	echo "<td bgcolor=$bgc ><font face=tahoma size=3>$row[$j]</font></td>";
+	echo "<td bgcolor=$bgc style='padding-left:3px;'><font face=tahoma size=3>$row[$j]</font></td>";
 
 $j++;
 	}

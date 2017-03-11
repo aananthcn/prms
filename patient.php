@@ -1,6 +1,7 @@
 <html>
 <title>PRMS - Patient Record</title>
 
+<p align="center"> <a href="main.php">Back to Home Page</a></p>
 <body style="margin-left:100px;margin-right:100px">
 
 <?php

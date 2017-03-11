@@ -1,7 +1,24 @@
 <html>
 <title>PRMS History</title>
 
-<body>
+<body style="margin-left:100px;margin-right:100px">
+<p align="center"> <a href="main.php">Home Page</a></p>
+<form action="save-treatment.php" method="post">
+<h2 style="color:#0f4fe0;"> New consultation </h2>
+<table style="text-align:center;width:100%;">
+  <tr>
+      <td><input type="date" name="date" value="<?php echo date("Y-m-d");?>" style="width:100%;"/></td>
+      <td><textarea name="complaint" cols="40" rows="5" placeholder="Patient's complaints..."></textarea></td>
+      <td><input type="text" name="doctor" placeholder="Doctor's name" style="width:100%;"/></td>
+      <td><textarea name="prescription" cols="40" rows="5" placeholder="Doctor's prescription..."></textarea></td>
+      <td>
+	<input type="submit" value="Save treatment" name="hist_btn" style="width:100%;"/></td>
+  </tr>
+</table>
+
+<h3 style="text-decoration:underline;color:#7070b0"> History </h3>
+
+</form>
 
 <div id="history">
 <?php
@@ -15,14 +32,19 @@ function print_pat_history() {
 	$password=$_SESSION['password'];
 	$database=$_SESSION['database'];
 
-	$link = mysqli_connect(localhost,$username,$password, $database);
+	$link = mysqli_connect(localhost,$username,$password,$database);
 
+	// content will be non-null only if user clicks the pid from main.php
 	$patient_id = isset($_GET['content']) ? $_GET['content'] : '';
+	if ($patient_id == "") {
+		$patient_id=$_SESSION['pid'];
+	}
 	$tbl = "pid_"."$patient_id"."_tbl";
-	$_SESSION['pid_table']=$tbl;
+	$_SESSION['pid']=$patient_id;
+	$_SESSION['pidtable']=$tbl;
 
 	// get patient details
-	$query="SELECT pid FROM $database.patientlist WHERE pid='$patient_id' LIMIT 1";
+	$query="SELECT pid,name,gender FROM $database.patientlist WHERE pid='$patient_id' LIMIT 1";
 	$result = mysqli_query($link, $query);
 	if (mysqli_num_rows($result) > 0) {
 		$row = mysqli_fetch_assoc($result);
@@ -40,21 +62,29 @@ function print_pat_history() {
 	mysqli_free_result($result);		
 
 	// get patient history
-	$query="select * from $database.$tbl";
+	$query="select * from $database.$tbl ORDER BY vid DESC";
 	$pat_history=mysqli_query($link, $query);
 
 	$rows=mysqli_num_rows($pat_history);
 	$cols=mysqli_num_fields($pat_history);
 
 	/* print table title */
-	echo "<br><font size='4px' color=#ef4f00>";
-	echo "<b>Patient name: $patient_name</b><br>";
-	echo "<b>Gender: $patient_gender</b><br>";
+	echo "<font size='3px' color=#df3f00>";
+	echo "<b>Patient: </b>";
+	echo "<font size='4px' color=#0f4fe0>";
+	echo "<b> $patient_name</b>";
+	echo "<font size='3px' color=#df3f00>";
+	echo "<b> | Gender: </b>";
+	echo "<font size='4px' color=#0f4fe0>";
+	echo "<b> $patient_gender</b>";
+	echo "<font size='3px' color=#df3f00>";
+	echo "<b> | Previous visits: </b>";
+	echo "<font size='4px' color=#0f4fe0>";
+	echo "<b> $rows</b><br><br>";
 	echo "</font>";
-	echo "<br>No of previous visits: $rows<br><br>";
 
 	/* print patients - HEADER */
-	echo "<table border=1 cellpadding=3><tr>";
+	echo "<table border=1 cellpadding=3 style='text-align:center;width:100%;'><tr>";
 	$i=0;while ($i < $cols) {
 		$meta = mysqli_fetch_field($pat_history);
 		echo "<th bgcolor=#efefef height=40>$meta->name</th>";
