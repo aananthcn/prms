@@ -94,6 +94,7 @@ function print_pat_history() {
 
 	/* print patients - DATA */
 	$i=0;while ($i < $rows) {
+		// fetch a row
 		$row=mysqli_fetch_row($pat_history);
 		echo "<tr>";
 		if($i & 1)
@@ -101,8 +102,15 @@ function print_pat_history() {
 		else
 			$bgc = "#dfffff";
 
+		// loop through column
 		$j=0;while ($j < $cols) {
-			echo "<td bgcolor=$bgc ><font face=tahoma size=3>$row[$j]</font></td>";
+			// left align cells from 3rd column
+			if ($j >= 2) {
+				echo "<td bgcolor=$bgc style='padding-left:5px;' align='left'><font face=tahoma size=3>$row[$j]</font></td>";
+			}
+			else {
+				echo "<td bgcolor=$bgc ><font face=tahoma size=3>$row[$j]</font></td>";
+			}
 			$j++;
 		}
 		echo "</tr>";

@@ -57,9 +57,12 @@ $i=0;while ($i < $rows) {
 
 	// print columns
 	$j=0;while ($j < $cols) {
+		if ($j == 0) {
+			echo "<td bgcolor=$bgc align='center'><font face=tahoma size=3>$row[$j]</font></td>";
+		}
 		// hyperlink column1 (patient name) but pass column0 (patient id) as argument if clicked!!
-		if($j == 1) {
-			echo "<td bgcolor=$bgc align='center'>" . "<font face=tahoma size=3>" . '<a href="view-history.php?content='. $row[0] . '">' . $row[$j] . '</a>' . "</font>" . "</td>";
+		else if ($j == 1) {
+			echo "<td bgcolor=$bgc style='padding-left:3px;'>" . "<font face=tahoma size=3>" . '<a href="view-history.php?content='. $row[0] . '">' . $row[$j] . '</a>' . "</font>" . "</td>";
 		}
 		else
 			echo "<td bgcolor=$bgc style='padding-left:3px;'><font face=tahoma size=3>$row[$j]</font></td>";
