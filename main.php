@@ -14,8 +14,7 @@
 </table>
 
 </form>
-
-<br>
+<font size="1px"><br></font>
 <div id="patientlist">
 <?php
 /*************************************************************************
@@ -28,8 +27,16 @@ $database=$_SESSION['database'];
 
 
 $link = mysqli_connect('localhost',$username,$password, $database);
-$query="select * from patientdb.patientlist ORDER BY pid DESC";
+$query="SELECT * FROM patientdb.patientlist ORDER BY pid DESC";
 $patientlist=mysqli_query($link, $query);
+
+// create patientlist if not exists
+if (empty($patientlist)) {
+	$cr_query="CREATE TABLE patientdb.patientlist ( pid INT NOT NULL AUTO_INCREMENT, name VARCHAR(100), phone VARCHAR(30), email VARCHAR(60), gender VARCHAR(20), PRIMARY KEY (pid) )";
+	$result=mysqli_query($link, $cr_query);
+	// re-run the patient list query
+	$patientlist=mysqli_query($link, $query);
+}	
 
 $rows=mysqli_num_rows($patientlist);
 $cols=mysqli_num_fields($patientlist);
@@ -77,6 +84,10 @@ echo "</table>";
 mysqli_free_result($patientlist);
 mysqli_close($link);
 
+
+if ($rows == 0) {
+	echo "<br>Patients list is empty! Probably a fresh system!";
+}
 
 ?>
 </div>
