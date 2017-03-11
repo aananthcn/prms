@@ -77,7 +77,7 @@ function print_pat_history() {
 	echo "<font size='4px' color=#0f4fe0>";
 	echo "<b> $patient_gender</b>";
 	echo "<font size='3px' color=#df3f00>";
-	echo "<b> | Previous visits: </b>";
+	echo "<b> | Previous treatments: </b>";
 	echo "<font size='4px' color=#0f4fe0>";
 	echo "<b> $rows</b><br><br>";
 	echo "</font>";

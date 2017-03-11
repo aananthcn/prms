@@ -3,6 +3,7 @@ echo ":-)";
 
 $username="default";
 $password="default";
+$search="default";
 
 if (isset($_POST['login'])) {
 	$username=$_POST['login'];
@@ -18,6 +19,7 @@ session_start();
 $_SESSION['username'] = $username;
 $_SESSION['password'] = $password;
 $_SESSION['database'] = $database;
+$_SESSION['search'] = $search;
 
 header("Location: main.php");
 

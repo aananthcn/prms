@@ -8,8 +8,28 @@
 /*************************************************************************
  * PHP CODE STARTS HERE
  */
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $search = test_input($_POST["search"]);
+}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  $data = str_replace("\\", "/", $data);
+  $data = str_replace("'", "\'", $data);
+  $data = str_replace('"', '\"', $data);
+  $data = str_replace("%", "\%", $data);
+  $data = str_replace("_", "\_", $data);
+  return $data;
+}
+
 if (isset($_POST['search_btn'])) {
-   echo "Search ...";
+   echo "Search ... $search";
+   session_start();
+   $_SESSION['search'] = $search;
+   header("Location: main.php");
 } else if (isset($_POST['add_btn'])) {
    echo '<title>PRMS Add User</title>
 	<div style="text-align: center;">

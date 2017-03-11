@@ -24,10 +24,21 @@ session_start();
 $username=$_SESSION['username'];
 $password=$_SESSION['password'];
 $database=$_SESSION['database'];
+$search =$_SESSION['search'];
 
 
 $link = mysqli_connect('localhost',$username,$password, $database);
-$query="SELECT * FROM patientdb.patientlist ORDER BY pid DESC";
+
+// search variable will initialized when someon presses search button
+if ($search == "default") {
+	$query="SELECT * FROM patientdb.patientlist ORDER BY pid DESC";
+}
+else {
+	$query="SELECT * FROM patientdb.patientlist WHERE name LIKE '%$search%' OR phone LIKE '%$search%'";
+	echo "<p align='center'> <a href='main.php'>Reset Search</a></p>";
+}
+$_SESSION['search'] = "default";
+
 $patientlist=mysqli_query($link, $query);
 
 // create patientlist if not exists
