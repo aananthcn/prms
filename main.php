@@ -35,36 +35,39 @@ $rows=mysqli_num_rows($patientlist);
 $cols=mysqli_num_fields($patientlist);
 
 /* print patients - HEADER */
-//echo "<table border=1 cellpadding=3><tr>";
 echo '<font size="5" color="blue"> Patient Records</font>';
 echo '<font size="1px"><br><br></font>';
 echo "<table border=1 width=100%><tr>";
 $i=0;while ($i < $cols) {
-$meta = mysqli_fetch_field($patientlist);
-echo "<th bgcolor=#bfbfef height=40>$meta->name</th>";
-$i++;
+	$meta = mysqli_fetch_field($patientlist);
+	echo "<th bgcolor=#bfbfef height=40>$meta->name</th>";
+	$i++;
 }
 echo "</tr>";
 
+/* print patients - DATA */
 $i=0;while ($i < $rows) {
-$row=mysqli_fetch_row($patientlist);
-echo "<tr>";
-if($i & 1)
-	$bgc = "#ffffff";
-else
-	$bgc = "#eeeeef";
+	// fetch a row
+	$row=mysqli_fetch_row($patientlist);
+	echo "<tr>";
+	if($i & 1)
+		$bgc = "#ffffff";
+	else
+		$bgc = "#eeeeef";
 
-$j=0;while ($j < $cols) {
-if($j == 0) {
-	echo "<td bgcolor=$bgc align='center'>" . "<font face=tahoma size=3>" . '<a href="view-history.php?content='. $row[$j] . '">' . $row[$j] . '</a>' . "</font>" . "</td>";
-}
-else
-	echo "<td bgcolor=$bgc style='padding-left:3px;'><font face=tahoma size=3>$row[$j]</font></td>";
+	// print columns
+	$j=0;while ($j < $cols) {
+		// hyperlink column1 (patient name) but pass column0 (patient id) as argument if clicked!!
+		if($j == 1) {
+			echo "<td bgcolor=$bgc align='center'>" . "<font face=tahoma size=3>" . '<a href="view-history.php?content='. $row[0] . '">' . $row[$j] . '</a>' . "</font>" . "</td>";
+		}
+		else
+			echo "<td bgcolor=$bgc style='padding-left:3px;'><font face=tahoma size=3>$row[$j]</font></td>";
 
-$j++;
+		$j++;
 	}
-echo "</tr>";
-$i++;
+	echo "</tr>";
+	$i++;
 }
 echo "</table>";
 
