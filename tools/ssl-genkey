@@ -1,0 +1,7 @@
+#! /bin/bash
+
+openssl rsa -in ~/.ssh/id_rsa -outform pem > ~/.ssh/id_rsa.pem
+openssl rsa -in ~/.ssh/id_rsa -pubout -outform pem > ~/.ssh/id_rsa.pub.pem
+
+openssl rand -base64 32 > ~/.ssh/key.bin
+openssl rsautl -encrypt -inkey ~/.ssh/id_rsa.pub.pem -pubin -in ~/.ssh/key.bin -out ~/.ssh/key.bin.enc 

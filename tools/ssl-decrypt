@@ -1,0 +1,8 @@
+#! /bin/bash
+
+if [ -z "$1" ]; then
+	echo "Usage: $0 <file to decrypt>"
+else
+	openssl rsautl -decrypt -inkey ~/.ssh/id_rsa.pem -in ~/.ssh/key.bin.enc -out /tmp/key.bin
+	openssl enc -d -aes-256-cbc -in $1 -out $1.dec -pass file:/tmp/key.bin 
+fi
