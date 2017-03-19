@@ -33,8 +33,8 @@ function print_pat_history() {
 
 	$link = mysqli_connect(localhost,$username,$password,$database);
 
-	// content will be non-null only if user clicks the pid from main.php
-	$patient_id = isset($_GET['content']) ? $_GET['content'] : '';
+	// arg 'pid' will be non-null only if user clicks the pid from main.php
+	$patient_id = isset($_GET['pid']) ? $_GET['pid'] : '';
 	if ($patient_id == "") {
 		$patient_id=$_SESSION['pid'];
 	}

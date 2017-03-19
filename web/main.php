@@ -56,15 +56,21 @@ $cols=mysqli_num_fields($patientlist);
 echo '<font size="5" color="blue"> Patient Records</font>';
 echo '<font size="1px"><br><br></font>';
 echo "<table border=1 width=100%><tr>";
-$i=0;while ($i < $cols) {
+$i=0;while ($i <= $cols) {
 	$meta = mysqli_fetch_field($patientlist);
-	echo "<th bgcolor=#bfbfef height=40>$meta->name</th>";
+	if ($i == $cols) {
+		echo "<th bgcolor=#bfbfef height=40>edit</th>";
+	}
+	else {
+		echo "<th bgcolor=#bfbfef height=40>$meta->name</th>";
+	}
 	$i++;
 }
 echo "</tr>";
 
 /* print patients - DATA */
 $i=0;while ($i < $rows) {
+	$pid = "";
 	// fetch a row
 	$row=mysqli_fetch_row($patientlist);
 	echo "<tr>";
@@ -74,13 +80,17 @@ $i=0;while ($i < $rows) {
 		$bgc = "#eeeeef";
 
 	// print columns
-	$j=0;while ($j < $cols) {
+	$j=0;while ($j <= $cols) {
 		if ($j == 0) {
 			echo "<td bgcolor=$bgc align='center'><font face=tahoma size=3>$row[$j]</font></td>";
+			$pid = $row[$j];
 		}
 		// hyperlink column1 (patient name) but pass column0 (patient id) as argument if clicked!!
 		else if ($j == 1) {
-			echo "<td bgcolor=$bgc style='padding-left:3px;'>" . "<font face=tahoma size=3>" . '<a href="view-history.php?content='. $row[0] . '">' . $row[$j] . '</a>' . "</font>" . "</td>";
+			echo "<td bgcolor=$bgc style='padding-left:3px;'>" . "<font face=tahoma size=3>" . '<a href="view-history.php?pid='. $pid . '">' . $row[$j] . '</a>' . "</font>" . "</td>";
+		}
+		else if ($j == $cols){
+			echo "<td bgcolor=$bgc style='text-align:center;'><a href='patient.php?pid=$pid'>ஃ</a></td>";
 		}
 		else
 			echo "<td bgcolor=$bgc style='padding-left:3px;'><font face=tahoma size=3>$row[$j]</font></td>";

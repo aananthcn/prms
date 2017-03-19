@@ -14,6 +14,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $gender = test_input($_POST["gender"]);
 }
 
+// get arguments
+$pid = $_GET['pid'];
+
+// check if update or delete button was pressed
+if (isset($_POST['update'])) {
+	# update-button was clicked
+	$button = "update";
+}
+elseif (isset($_POST['delete'])) {
+	# delete-button was clicked
+	$button = "delete";
+}
+elseif (isset($_POST['save'])) {
+	# New record: save-button was clicked
+	$button = "save";
+}
+
 function test_input($data) {
   $data = trim($data);
   $data = stripslashes($data);
@@ -39,10 +56,36 @@ if (!$link) {
 	die("Connection failed: " . mysqli_connect_error());
 }
 
-// add new patient
-$query="INSERT INTO patientdb.patientlist (name, phone, email, gender)
-VALUES ('$name', '$phone', '$email', '$gender')";
-if (mysqli_query($link, $query)) {
+if ($pid > 0)  {
+	// edit current patient
+	$edit = 1; 
+	if ($button == "update") {
+		$query = "UPDATE patientlist SET name='$name', phone='$phone', email='$email', gender='$gender' WHERE pid='$pid' LIMIT 1";
+	}
+	elseif ($button == "delete") {
+		$tbl = "pid_"."$pid"."_tbl";	
+		$query = "DROP TABLE IF EXISTS '$tbl'";
+		mysqli_query($link, $query);
+		$query = "DELETE FROM patientlist WHERE pid='$pid' LIMIT 1";
+	}
+}
+else {
+	// add new patient
+	$edit = 0;
+	$query="INSERT INTO patientlist (name, phone, email, gender) VALUES ('$name', '$phone', '$email', '$gender')";
+}
+
+// execute query
+$result = mysqli_query($link, $query);
+
+// if query is successful and if the previous query is not an edit!!
+if (($result == TRUE) && (edit != 1)) {
+	echo "Edited record successfully";
+
+	mysqli_close($link);
+	header("Location: main.php");
+}
+else if (($result == TRUE) && (edit != 1)) {
 	echo "New record created successfully";
 
 	// get patient_id
