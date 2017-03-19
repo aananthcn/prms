@@ -40,7 +40,7 @@ function test_input($data) {
 function print_add_patient_form() {
 	echo '<title>PRMS Add User</title>
 		<div style="text-align: center;">
-		<form action="save-record.php" method="post" style="margin:100px;">
+		<form action="save-patient.php" method="post" style="margin:100px;">
 		<font size="5" color="blue"> Add Patient\'s Details</font>
 		<font size="1px"><br><br></font>
 		<input type="text" name="name" placeholder="Full name" style="text-align:center;width:36%;"/>
@@ -72,7 +72,7 @@ function print_edit_patient_form($pid, $name, $email, $phone, $gender) {
 	}
 	echo '<title>PRMS Add User</title>
 		<div style="text-align: center;">
-		<form action="save-record.php?pid=' . htmlspecialchars($patpid) . '" method="post" style="margin:100px;">
+		<form action="save-patient.php?pid=' . htmlspecialchars($patpid) . '" method="post" style="margin:100px;">
 		<font size="5" color="blue"> Edit Patient\'s Details</font>
 		<font size="1px"><br><br></font>
 		<input type="text" name="name" placeholder="Full name" style="text-align:center;width:36%;" value="' . htmlspecialchars($patname) . '" />

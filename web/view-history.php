@@ -84,7 +84,7 @@ function print_pat_history() {
 
 	/* print patients - HEADER */
 	echo "<table border=1 cellpadding=3 style='text-align:center;width:100%;'><tr>";
-	$i=0;while ($i < $cols) {
+	$i=0;while ($i <= $cols) {
 		$meta = mysqli_fetch_field($pat_history);
 		echo "<th bgcolor=#efefef height=40>$meta->name</th>";
 		$i++;
@@ -102,7 +102,7 @@ function print_pat_history() {
 			$bgc = "#dfffff";
 
 		// loop through column
-		$j=0;while ($j < $cols) {
+		$j=0;while ($j <= $cols) {
 			// left align cells from 3rd column
 			if ($j >= 2) {
 				echo "<td bgcolor=$bgc style='padding-left:5px;' align='left'><font face=tahoma size=3>$row[$j]</font></td>";
