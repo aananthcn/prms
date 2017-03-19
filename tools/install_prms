@@ -1,0 +1,22 @@
+#! /bin/bash
+
+echo "Running PRMS installation script..."
+mkdir -p $HOME/projects
+cd $HOME/projects
+echo ""
+
+echo "Updating Patient Record Management System project..."
+if [ -d "$HOME/projects/prms" ]; then
+	cd $HOME/projects/prms
+	git pull https://github.com/aananthcn/prms.git
+else
+	git clone https://github.com/aananthcn/prms.git
+fi
+echo ""
+
+echo "Copying files from projects to webserver directory..."
+echo ""
+sudo cp $HOME/projects/prms/web/* /var/www/html/
+
+
+echo "Installation is done!"
