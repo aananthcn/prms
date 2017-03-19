@@ -86,7 +86,12 @@ function print_pat_history() {
 	echo "<table border=1 cellpadding=3 style='text-align:center;width:100%;'><tr>";
 	$i=0;while ($i <= $cols) {
 		$meta = mysqli_fetch_field($pat_history);
-		echo "<th bgcolor=#efefef height=40>$meta->name</th>";
+		if ($i == $cols) {
+			echo "<th bgcolor=#efefef height=40>edit</th>";
+		}
+		else {
+			echo "<th bgcolor=#efefef height=40>$meta->name</th>";
+		}
 		$i++;
 	}
 	echo "</tr>";
@@ -95,6 +100,7 @@ function print_pat_history() {
 	$i=0;while ($i < $rows) {
 		// fetch a row
 		$row=mysqli_fetch_row($pat_history);
+		$vid=$row[0];
 		echo "<tr>";
 		if($i & 1)
 			$bgc = "#ffffff";
@@ -104,7 +110,10 @@ function print_pat_history() {
 		// loop through column
 		$j=0;while ($j <= $cols) {
 			// left align cells from 3rd column
-			if ($j >= 2) {
+			if ($j == $cols){
+				echo "<td bgcolor=$bgc style='text-align:center;'><a href='edit-history.php?vid=$vid&pid=$patient_id'>ஃ</a></td>";
+			}
+			else if ($j >= 2) {
 				echo "<td bgcolor=$bgc style='padding-left:5px;' align='left'><font face=tahoma size=3>$row[$j]</font></td>";
 			}
 			else {
