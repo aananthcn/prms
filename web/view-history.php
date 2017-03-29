@@ -10,7 +10,7 @@
 <table style="text-align:center;width:100%;">
   <tr>
       <td><textarea name="date" cols="18" rows="1" style="width:100%;"><?php echo date("Y-m-d");?></textarea></td>
-      <td><textarea name="doctor" cols="24" rows="1" style="width:100%;">Dr. Jegadish</textarea></td>
+      <td><textarea name="doctor" cols="24" rows="1" style="width:100%;">Dr. <?php session_start(); echo $_SESSION['username'];?></textarea></td>
   </tr>
   <tr> </tr>
   <tr>
@@ -19,8 +19,9 @@
   </tr>
   <tr> </tr>
 </table>
-
-<input type="submit" value="Save treatment" name="hist_btn" style="width:100%;"/>
+<div align="center">
+<input type="submit" value="Save treatment" name="hist_btn" style="width:50%;"/>
+</div>
 <h3 style="text-decoration:underline;color:#70a0b0"> History </h3>
 
 </form>

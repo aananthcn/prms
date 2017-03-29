@@ -74,21 +74,27 @@ echo "
 <h2 style='color:#0f4fe0;'> Edit Treatment </h2>
 <table style='text-align:center;width:100%;'>
   <tr>
-      <td><textarea name='date' cols='18' rows='1'>$date</textarea></td>
-      <td><textarea name='doctor' cols='24' rows='1'>$doctor</textarea></td>
+      <td><textarea name='date' cols='18' rows='1' style='width:100%;'>$date</textarea></td>
+      <td><textarea name='doctor' cols='24' rows='1' style='width:100%;'>$doctor</textarea></td>
   </tr>
   </tr>
   <tr> </tr>
   <tr>
-      <td><textarea name='complaint' cols='18' rows='10' >$complaint</textarea></td>
-      <td><textarea name='prescription' cols='24' rows='10' >$prescription</textarea></td>
+      <td><textarea name='complaint' cols='18' rows='10' style='width:100%;' >$complaint</textarea></td>
+      <td><textarea name='prescription' cols='24' rows='10' style='width:100%;' >$prescription</textarea></td>
   </tr>
   <tr> </tr>
 </table>
-<input type='submit' value='Save treatment' name='hist_btn' style='width:100%;'/>
-
+<div align='center'>
+<input type='submit' value='Save treatment' name='hist_btn' style='width:50%;'/>
+</div>
 </form>
-<p align='center'> <a href='main.php'>Home Page</a></p>
+<table style='text-align:center;width:100%;'>
+  <tr>
+      <td><a href='main.php'>Home Page</a></td>
+      <td><a href='view-history.php'>Back</a></td>
+  <tr>
+</table>
 ";
 
 mysqli_close($link);
