@@ -1,15 +1,16 @@
 <html>
 <title>PRMS</title>
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<body style="margin-left:100px;margin-right:100px">
+<body style="margin-left:1px;margin-right:1px">
 
 <form action="patient.php" method="post">
 <table style="text-align:center;width:100%;">
   <tr>
       <td><input type="text" name="search" placeholder="Type name or phone number..." style="width:100%;"/></td>
-      <td><input type="submit" value="Search" name="search_btn" style="width:60%;"/></td>
-      <td><input type="submit" value="Add user" name="add_btn" style="width:60%;"/></td>
+      <td><input type="submit" value="Search" name="search_btn" style="width:90%;"/></td>
+      <td><input type="submit" value="Add user" name="add_btn" style="width:90%;"/></td>
   </tr>
 </table>
 

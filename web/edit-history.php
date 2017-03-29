@@ -1,7 +1,7 @@
 <html>
 <title>PRMS History</title>
 
-<body style="margin-left:100px;margin-right:100px">
+<body style="margin-left:1px;margin-right:1px">
 <div id="history">
 <?php
 /*************************************************************************
@@ -69,19 +69,27 @@ mysqli_free_result($result);
 
 
 echo "
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
 <form action='edit-history.php?vid=$vid&pid=$pid' method='post'>
-<h2 style='color:#0f4fe0;'> New consultation </h2>
+<h2 style='color:#0f4fe0;'> Edit Treatment </h2>
 <table style='text-align:center;width:100%;'>
   <tr>
-      <td><textarea name='date' cols='20' rows='3'>$date</textarea></td>
-      <td><textarea name='doctor' cols='20' rows='3'>$doctor</textarea></td>
-      <td><textarea name='complaint' cols='40' rows='3' >$complaint</textarea></td>
-      <td><textarea name='prescription' cols='40' rows='3' >$prescription</textarea></td>
-      <td style='vertical-align:middle;'><input type='submit' value='Save treatment' name='hist_btn' style='width:100%;'/></td>
+      <td><textarea name='date' cols='18' rows='1'>$date</textarea></td>
+      <td><textarea name='doctor' cols='24' rows='1'>$doctor</textarea></td>
   </tr>
+  </tr>
+  <tr> </tr>
+  <tr>
+      <td><textarea name='complaint' cols='18' rows='10' >$complaint</textarea></td>
+      <td><textarea name='prescription' cols='24' rows='10' >$prescription</textarea></td>
+  </tr>
+  <tr> </tr>
 </table>
+<input type='submit' value='Save treatment' name='hist_btn' style='width:100%;'/>
 
-</form>";
+</form>
+<p align='center'> <a href='main.php'>Home Page</a></p>
+";
 
 mysqli_close($link);
 

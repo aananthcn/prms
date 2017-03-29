@@ -1,21 +1,27 @@
 <html>
 <title>PRMS History</title>
 
-<body style="margin-left:100px;margin-right:100px">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<body style="margin-left:1px;margin-right:1px">
 <p align="center"> <a href="main.php">Home Page</a></p>
 <form action="save-treatment.php" method="post">
 <h2 style="color:#0f4fe0;"> New consultation </h2>
 <table style="text-align:center;width:100%;">
   <tr>
-      <td><textarea name="date" cols="20" rows="3"><?php echo date("Y-m-d");?></textarea></td>
-      <td><textarea name="doctor" cols="20" rows="3">Dr. Jegadish</textarea></td>
-      <td><textarea name="complaint" cols="40" rows="3" placeholder="Patient's complaints..."></textarea></td>
-      <td><textarea name="prescription" cols="40" rows="3" placeholder="Doctor's prescription..."></textarea></td>
-      <td style="vertical-align:middle;"><input type="submit" value="Save treatment" name="hist_btn" style="width:100%;"/></td>
+      <td><textarea name="date" cols="18" rows="1" style="width:100%;"><?php echo date("Y-m-d");?></textarea></td>
+      <td><textarea name="doctor" cols="24" rows="1" style="width:100%;">Dr. Jegadish</textarea></td>
   </tr>
+  <tr> </tr>
+  <tr>
+      <td><textarea name="complaint" cols="18" rows="4" style="width:100%;" placeholder="Patient's complaints..."></textarea></td>
+      <td><textarea name="prescription" cols="24" rows="4" style="width:100%;" placeholder="Doctor's prescription..."></textarea></td>
+  </tr>
+  <tr> </tr>
 </table>
 
-<h3 style="text-decoration:underline;color:#7070b0"> History </h3>
+<input type="submit" value="Save treatment" name="hist_btn" style="width:100%;"/>
+<h3 style="text-decoration:underline;color:#70a0b0"> History </h3>
 
 </form>
 
@@ -24,6 +30,7 @@
 /*************************************************************************
  * PHP CODE STARTS HERE
  */
+//      <td style="vertical-align:middle;"><input type="submit" value="Save treatment" name="hist_btn" style="width:100%;"/></td>
 
 function print_pat_history() {
 	session_start();

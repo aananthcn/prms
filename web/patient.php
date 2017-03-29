@@ -1,8 +1,10 @@
 <html>
 <title>PRMS - Patient Record</title>
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <p align="center"> <a href="main.php">Back to Home Page</a></p>
-<body style="margin-left:100px;margin-right:100px">
+<body style="margin-left:1px;margin-right:1px">
 
 <script>
 function clicked(e)
@@ -40,17 +42,17 @@ function test_input($data) {
 function print_add_patient_form() {
 	echo '<title>PRMS Add User</title>
 		<div style="text-align: center;">
-		<form action="save-patient.php" method="post" style="margin:100px;">
+		<form action="save-patient.php" method="post" style="margin:5px;">
 		<font size="5" color="blue"> Add Patient\'s Details</font>
 		<font size="1px"><br><br></font>
-		<input type="text" name="name" placeholder="Full name" style="text-align:center;width:36%;"/>
+		<input type="text" name="name" placeholder="Full name" style="text-align:center;width:80%;"/>
 		<font size="1px"><br><br></font>
 		<input type="radio" name="gender" value="female"/>Female
 		<input type="radio" name="gender" value="male"/>Male
 		<font size="1px"><br><br></font>
-		<input type="text" name="phone" placeholder="Phone number" style="text-align:center;width:36%;"/>
+		<input type="text" name="phone" placeholder="Phone number" style="text-align:center;width:80%;"/>
 		<font size="1px"><br><br></font>
-		<input type="text" name="email" placeholder="E-mail" style="text-align:center;width:36%;"/>
+		<input type="text" name="email" placeholder="E-mail" style="text-align:center;width:80%;"/>
 		<font size="1px"><br><br></font>
 		<input type="submit" name="save" value="Save"/>
 		</div>
@@ -72,17 +74,17 @@ function print_edit_patient_form($pid, $name, $email, $phone, $gender) {
 	}
 	echo '<title>PRMS Add User</title>
 		<div style="text-align: center;">
-		<form action="save-patient.php?pid=' . htmlspecialchars($patpid) . '" method="post" style="margin:100px;">
+		<form action="save-patient.php?pid=' . htmlspecialchars($patpid) . '" method="post" style="margin:5px;">
 		<font size="5" color="blue"> Edit Patient\'s Details</font>
 		<font size="1px"><br><br></font>
-		<input type="text" name="name" placeholder="Full name" style="text-align:center;width:36%;" value="' . htmlspecialchars($patname) . '" />
+		<input type="text" name="name" placeholder="Full name" style="text-align:center;width:80%;" value="' . htmlspecialchars($patname) . '" />
 		<font size="1px"><br><br></font>
 		<input type="radio" name="gender" value="female" '.$femaleradio.'/>Female
 		<input type="radio" name="gender" value="male" '.$maleradio.'/>Male
 		<font size="1px"><br><br></font>
-		<input type="text" name="phone" placeholder="Phone number" style="text-align:center;width:36%;" value="' . htmlspecialchars($patphone) . '" />
+		<input type="text" name="phone" placeholder="Phone number" style="text-align:center;width:80%;" value="' . htmlspecialchars($patphone) . '" />
 		<font size="1px"><br><br></font>
-		<input type="text" name="email" placeholder="E-mail" style="text-align:center;width:36%;" value="' . htmlspecialchars($patemail) . '" />
+		<input type="text" name="email" placeholder="E-mail" style="text-align:center;width:80%;" value="' . htmlspecialchars($patemail) . '" />
 		<font size="1px"><br><br></font>
 		<input type="submit" name="update" value="Update"/>
 		<input type="submit" name="delete" value="Delete" onclick="clicked(event)" />
